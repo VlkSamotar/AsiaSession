@@ -47,7 +47,7 @@ This tool is especially useful for traders applying **SMC/ICT concepts**, where 
 
 ## 📂 Project Structure
 
-AsiaSessionIndicator/
+`AsiaSessionIndicator/
  ├─ Enums/
  │   ├─ MyLineColor.cs
  │   ├─ MyLineStyle.cs
@@ -58,7 +58,7 @@ AsiaSessionIndicator/
  │   └─ LineDefinition.cs
  ├─ Services/
  │   └─ LineDrawer.cs
- └─ AsianSessionIndicator.cs
+ └─ AsianSessionIndicator.cs`
 
 ---
 
