@@ -72,7 +72,7 @@ The indicator draws a **box around the Asian session**:
 - Horizontal lines mark the **high, low, and mid levels**.
 - High/low/mid lines extend into the future until the chosen `Extend Until Hour`.
 
-See more examples in the [Screenshots](#screenshots) section.
+See more examples in the [Screenshots](#-screenshots) section.
 
 ---
 
