@@ -31,55 +31,59 @@ namespace AsiaSessionIndicator
 	[Indicator(IsOverlay = true, TimeZone = TimeZones.UTC, AccessRights = AccessRights.None)]
 	public class AsianSessionIndicator : Indicator
 	{
-		[Parameter("Session Start Hour", DefaultValue = 1)]
+		[Parameter("Session Start Hour", DefaultValue = 1, Group = "Global Settings")]
 		public int SessionStartHour { get; set; }
 
-		[Parameter("Session End Hour", DefaultValue = 7)]
+		[Parameter("Session End Hour", DefaultValue = 7, Group = "Global Settings")]
 		public int SessionEndHour { get; set; }
 
-		[Parameter("Extend Until Hour", DefaultValue = 17)]
+		[Parameter("Extend Until Hour", DefaultValue = 17, Group = "Global Settings")]
 		public int ExtendUntilHour { get; set; }
 
-		[Parameter("Show History", DefaultValue = false)]
+		[Parameter("Show History", DefaultValue = false, Group = "Global Settings")]
 		public bool ShowHistory { get; set; }
 
-		[Parameter("UTC Offset (hours)", DefaultValue = 1)]
+		[Parameter("UTC Offset (hours)", DefaultValue = 1, Group = "Global Settings")]
 		public int TimezoneOffsetHours { get; set; }
 
 
-		[Parameter("Top Line Color", DefaultValue = MyLineColor.Orange)]
+		[Parameter("Top Line Color", DefaultValue = MyLineColor.Orange, Group = "Top Line Settings")]
 		public MyLineColor TopLineColor { get; set; }
-		[Parameter("Top Line Style", DefaultValue = MyLineStyle.Lines)]
+		[Parameter("Top Line Style", DefaultValue = MyLineStyle.Lines, Group = "Top Line Settings")]
 		public MyLineStyle TopLineStyle { get; set; }
-		[Parameter("Top Line Thickness", DefaultValue = MyLineThickness.One)]
+		[Parameter("Top Line Thickness", DefaultValue = MyLineThickness.One, Group = "Top Line Settings")]
 		public MyLineThickness TopLineThickness { get; set; }
 
-		[Parameter("Bottom Line Color", DefaultValue = MyLineColor.Orange)]
+
+		[Parameter("Bottom Line Color", DefaultValue = MyLineColor.Orange, Group = "Bottom Line Settings")]
 		public MyLineColor BottomLineColor { get; set; }
-		[Parameter("Bottom Line Style", DefaultValue = MyLineStyle.Lines)]
+		[Parameter("Bottom Line Style", DefaultValue = MyLineStyle.Lines, Group = "Bottom Line Settings")]
 		public MyLineStyle BottomLineStyle { get; set; }
-		[Parameter("Bottom Line Thickness", DefaultValue = MyLineThickness.One)]
+		[Parameter("Bottom Line Thickness", DefaultValue = MyLineThickness.One, Group = "Bottom Line Settings")]
 		public MyLineThickness BottomLineThickness { get; set; }
 
-		[Parameter("Mid Line Color", DefaultValue = MyLineColor.Orange)]
+
+		[Parameter("Mid Line Color", DefaultValue = MyLineColor.Orange, Group = "Mid Line Settings")]
 		public MyLineColor MidLineColor { get; set; }
-		[Parameter("Mid Line Style", DefaultValue = MyLineStyle.Dotted)]
+		[Parameter("Mid Line Style", DefaultValue = MyLineStyle.Dotted, Group = "Mid Line Settings")]
 		public MyLineStyle MidLineStyle { get; set; }
-		[Parameter("Mid Line Thickness", DefaultValue = MyLineThickness.One)]
+		[Parameter("Mid Line Thickness", DefaultValue = MyLineThickness.One, Group = "Mid Line Settings")]
 		public MyLineThickness MidLineThickness { get; set; }
 
-		[Parameter("Left Line Color", DefaultValue = MyLineColor.White)]
+
+		[Parameter("Left Line Color", DefaultValue = MyLineColor.White, Group = "Left Line Settings")]
 		public MyLineColor LeftLineColor { get; set; }
-		[Parameter("Left Line Style", DefaultValue = MyLineStyle.Dotted)]
+		[Parameter("Left Line Style", DefaultValue = MyLineStyle.Dotted, Group = "Left Line Settings")]
 		public MyLineStyle LeftLineStyle { get; set; }
-		[Parameter("Left Line Thickness", DefaultValue = MyLineThickness.One)]
+		[Parameter("Left Line Thickness", DefaultValue = MyLineThickness.One, Group = "Left Line Settings")]
 		public MyLineThickness LeftLineThickness { get; set; }
 
-		[Parameter("Right Line Color", DefaultValue = MyLineColor.White)]
+
+		[Parameter("Right Line Color", DefaultValue = MyLineColor.White, Group = "Right Line Settings")]
 		public MyLineColor RightLineColor { get; set; }
-		[Parameter("Right Line Style", DefaultValue = MyLineStyle.Dotted)]
+		[Parameter("Right Line Style", DefaultValue = MyLineStyle.Dotted, Group = "Right Line Settings")]
 		public MyLineStyle RightLineStyle { get; set; }
-		[Parameter("Right Line Thickness", DefaultValue = MyLineThickness.One)]
+		[Parameter("Right Line Thickness", DefaultValue = MyLineThickness.One, Group = "Right Line Settings")]
 		public MyLineThickness RightLineThickness { get; set; }
 
 		protected override void Initialize()
