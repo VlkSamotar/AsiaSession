@@ -1,4 +1,26 @@
-﻿using AsiaSession.Enums;
+﻿/*
+  Asia Session Indicator for cTrader
+  ----------------------------------
+  Author: Jakub Březa
+  Date: December 2025
+  License: MIT (see LICENSE file for details)
+
+  Description:
+  This indicator highlights the Asian trading session by drawing a configurable
+  background region between user‑defined start and end times. It supports custom
+  colors, opacity, line styles, and optional historical rendering for accurate
+  backtesting. The session is aligned using a global UTC offset to ensure
+  consistent timing across different brokers and server timezones.
+
+  Features:
+  - Configurable session start and end times
+  - Customizable color, opacity, and border style
+  - Optional historical mode for backtesting
+  - Global UTC offset for consistent session alignment
+  - Clean, modular architecture for easy maintenance
+*/
+
+using AsiaSession.Enums;
 using AsiaSession.Models;
 using AsiaSession.Services;
 using cAlgo.API;
