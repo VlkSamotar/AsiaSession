@@ -21,6 +21,7 @@
 */
 
 using AsiaSession.Enums;
+using AsiaSession.Helpers;
 using AsiaSession.Models;
 using AsiaSession.Services;
 using cAlgo.API;
@@ -46,6 +47,9 @@ namespace AsiaSessionIndicator
 		[Parameter("UTC Offset (hours)", DefaultValue = 1, Group = "Global Settings")]
 		public int TimezoneOffsetHours { get; set; }
 
+		[Parameter("Show at interval below", DefaultValue = PossibleTimeFrames.Hour1, Group = "Global Settings")]
+		public PossibleTimeFrames ShowBelowTimeFrame { get; set; }
+
 
 		[Parameter("Top Line Color", DefaultValue = MyLineColor.Orange, Group = "Top Line Settings")]
 		public MyLineColor TopLineColor { get; set; }
@@ -53,6 +57,8 @@ namespace AsiaSessionIndicator
 		public MyLineStyle TopLineStyle { get; set; }
 		[Parameter("Top Line Thickness", DefaultValue = MyLineThickness.One, Group = "Top Line Settings")]
 		public MyLineThickness TopLineThickness { get; set; }
+		[Parameter("Show Top Label", DefaultValue = true, Group = "Top Line Settings")]
+		public bool ShowTopLabel { get; set; }
 
 
 		[Parameter("Bottom Line Color", DefaultValue = MyLineColor.Orange, Group = "Bottom Line Settings")]
@@ -61,6 +67,8 @@ namespace AsiaSessionIndicator
 		public MyLineStyle BottomLineStyle { get; set; }
 		[Parameter("Bottom Line Thickness", DefaultValue = MyLineThickness.One, Group = "Bottom Line Settings")]
 		public MyLineThickness BottomLineThickness { get; set; }
+		[Parameter("Show Bottom Label", DefaultValue = true, Group = "Bottom Line Settings")]
+		public bool ShowBottomLabel { get; set; }
 
 
 		[Parameter("Mid Line Color", DefaultValue = MyLineColor.Orange, Group = "Mid Line Settings")]
@@ -69,6 +77,8 @@ namespace AsiaSessionIndicator
 		public MyLineStyle MidLineStyle { get; set; }
 		[Parameter("Mid Line Thickness", DefaultValue = MyLineThickness.One, Group = "Mid Line Settings")]
 		public MyLineThickness MidLineThickness { get; set; }
+		[Parameter("Show Mid Label", DefaultValue = true, Group = "Mid Line Settings")]
+		public bool ShowMidLabel { get; set; }
 
 
 		[Parameter("Left Line Color", DefaultValue = MyLineColor.White, Group = "Left Line Settings")]
@@ -88,6 +98,8 @@ namespace AsiaSessionIndicator
 
 		protected override void Initialize()
 		{
+			if (TimeFrame > TimeFrameMapper.FromPossibleTimeFrames(ShowBelowTimeFrame)) return;
+
 			var today = Server.Time.Date;
 			if (today.DayOfWeek == DayOfWeek.Saturday || today.DayOfWeek == DayOfWeek.Sunday)
 				return;
@@ -97,6 +109,8 @@ namespace AsiaSessionIndicator
 
 		public override void Calculate(int index)
 		{
+			if (TimeFrame > TimeFrameMapper.FromPossibleTimeFrames(ShowBelowTimeFrame)) return;
+
 			var currentTime = Bars.OpenTimes[index];
 			if (!ShowHistory && currentTime.Date != Server.Time.Date) return;
 			if (currentTime.DayOfWeek == DayOfWeek.Saturday || currentTime.DayOfWeek == DayOfWeek.Sunday) return;
@@ -131,14 +145,29 @@ namespace AsiaSessionIndicator
 
 			var highLine = new LineDefinition("HighLine", sessionStart, high, extendEnd, high,
 											  TopLineColor, TopLineStyle, TopLineThickness);
+			if (ShowTopLabel)
+			{
+				var higLabel = new LabelDefinition("HighLabel", extendEnd, high, $"Asia high - {high:F4}", TopLineColor);
+				LabelDrawer.DrawLabel(Chart, higLabel, ShowHistory, date);
+			}
 			LineDrawer.DrawLine(Chart, highLine, ShowHistory, date);
 
 			var lowLine = new LineDefinition("LowLine", sessionStart, low, extendEnd, low,
 											 BottomLineColor, BottomLineStyle, BottomLineThickness);
+			if (ShowBottomLabel)
+			{
+				var lowLabel = new LabelDefinition("LowLabel", extendEnd, low, $"Asia low - {low:F4}", BottomLineColor);
+				LabelDrawer.DrawLabel(Chart, lowLabel, ShowHistory, date);
+			}
 			LineDrawer.DrawLine(Chart, lowLine, ShowHistory, date);
 
 			var midLine = new LineDefinition("MidLine", sessionStart, mid, extendEnd, mid,
 											 MidLineColor, MidLineStyle, MidLineThickness);
+			if (ShowMidLabel)
+			{
+				var midLabel = new LabelDefinition("MidLabel", extendEnd, mid, $"Asia midline - {mid:F4}", MidLineColor);
+				LabelDrawer.DrawLabel(Chart, midLabel, ShowHistory, date);
+			}
 			LineDrawer.DrawLine(Chart, midLine, ShowHistory, date);
 
 			var leftLine = new LineDefinition("LeftLine", sessionStart, high, sessionStart, low,
