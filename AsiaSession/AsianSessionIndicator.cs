@@ -147,7 +147,7 @@ namespace AsiaSessionIndicator
 											  TopLineColor, TopLineStyle, TopLineThickness);
 			if (ShowTopLabel)
 			{
-				var higLabel = new LabelDefinition("HighLabel", extendEnd, high, $"Asia high - {high:F4}", TopLineColor);
+				var higLabel = new LabelDefinition("HighLabel", extendEnd, high, $"Asia High - {high:F5}", TopLineColor);
 				LabelDrawer.DrawLabel(Chart, higLabel, ShowHistory, date);
 			}
 			LineDrawer.DrawLine(Chart, highLine, ShowHistory, date);
@@ -156,7 +156,7 @@ namespace AsiaSessionIndicator
 											 BottomLineColor, BottomLineStyle, BottomLineThickness);
 			if (ShowBottomLabel)
 			{
-				var lowLabel = new LabelDefinition("LowLabel", extendEnd, low, $"Asia low - {low:F4}", BottomLineColor);
+				var lowLabel = new LabelDefinition("LowLabel", extendEnd, low, $"Asia Low - {low:F5}", BottomLineColor);
 				LabelDrawer.DrawLabel(Chart, lowLabel, ShowHistory, date);
 			}
 			LineDrawer.DrawLine(Chart, lowLine, ShowHistory, date);
@@ -165,7 +165,7 @@ namespace AsiaSessionIndicator
 											 MidLineColor, MidLineStyle, MidLineThickness);
 			if (ShowMidLabel)
 			{
-				var midLabel = new LabelDefinition("MidLabel", extendEnd, mid, $"Asia midline - {mid:F4}", MidLineColor);
+				var midLabel = new LabelDefinition("MidLabel", extendEnd, mid, $"Asia Midline - {mid:F5}", MidLineColor);
 				LabelDrawer.DrawLabel(Chart, midLabel, ShowHistory, date);
 			}
 			LineDrawer.DrawLine(Chart, midLine, ShowHistory, date);
